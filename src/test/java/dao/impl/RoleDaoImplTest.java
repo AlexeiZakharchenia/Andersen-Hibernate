@@ -2,12 +2,8 @@ package dao.impl;
 
 import dao.RoleDao;
 import entity.Role;
-import entity.User;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public class RoleDaoImplTest {
     RoleDao roleDao = new RoleDaoImpl();
@@ -42,6 +38,6 @@ public class RoleDaoImplTest {
 
     @Test
     public void getAllByUserName(){
-      roleDao.getAllByUserName(new String("Tom")).forEach(System.out::println);
+      roleDao.getAllByUserName("Tom").forEach(System.out::println);
     }
 }

@@ -29,17 +29,16 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public Role getByName(String roleName) {
-        try(Session session = sessionFactory.openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Role role = (Role) session.createQuery("from Role r where r.name like :rlname")
                     .setParameter("rlname", roleName)
                     .getSingleResult();
             session.getTransaction().commit();
             return role;
-        }catch (NoResultException e){
+        } catch (NoResultException e) {
             return null;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -49,7 +48,7 @@ public class RoleDaoImpl implements RoleDao {
     public void save(Role role) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.saveOrUpdate(role);
+            session.save(role);
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,14 +100,14 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public List<Role> getAllByUserName(String userName) {
-        try(Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             List<Role> list = session.createQuery("select u.roles from User u where u.name like :usname")
                     .setParameter("usname", userName)
                     .list();
             session.getTransaction().commit();
             return list;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return new LinkedList<>();

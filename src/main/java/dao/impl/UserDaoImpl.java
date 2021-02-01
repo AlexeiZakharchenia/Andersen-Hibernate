@@ -47,7 +47,7 @@ public class UserDaoImpl implements UserDao {
     public void save(User user) {
         try(Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.saveOrUpdate(user);
+            session.save(user);
             session.getTransaction().commit();
         }catch (Exception e){
             e.printStackTrace();
