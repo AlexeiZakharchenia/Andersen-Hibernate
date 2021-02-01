@@ -27,18 +27,20 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getByName(String name) {
+    public List<User> getByName(String name) {
         try(Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            User user = (User)session.createQuery("from User u left join fetch u.roles rl where u.name like :usname")
+            List<User> list = session
+                    .createQuery("select distinct u from User u " +
+                            "left join fetch u.roles rl where u.name like :usname")
                     .setParameter("usname", name)
-                    .getSingleResult();
+                    .list();
             session.getTransaction().commit();
-            return user;
+            return list;
         } catch (Exception e){
             e.printStackTrace();
         }
-        return null;
+        return new LinkedList<>();
     }
 
     @Override

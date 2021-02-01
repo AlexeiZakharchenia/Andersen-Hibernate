@@ -30,7 +30,7 @@ public class UserDaoImplTest {
 
     @Test
     public void getByName(){
-        System.out.println(userDao.getByName("John"));
+        System.out.println(userDao.getByName("Tom"));
     }
 
     @Test
