@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-Hello it's admin page
+Hello ${sessionScope.name} it's admin page
 <br>
 <jsp:include page="util.jsp"/>
 </body>

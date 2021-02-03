@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-Hello it's moderator <page></page>
+Hello ${sessionScope.name} it's moderator <page></page>
 <br>
 <jsp:include page="util.jsp"/>
 </body>

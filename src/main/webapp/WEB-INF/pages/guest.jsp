@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-Hello it's guest page
+Hello ${sessionScope.name} it's guest page
 <br>
 <jsp:include page="util.jsp"/>
 </body>
