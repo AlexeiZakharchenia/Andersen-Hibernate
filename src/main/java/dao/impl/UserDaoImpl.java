@@ -5,10 +5,12 @@ import dao.UserDao;
 import entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
 import sessionFactory.HibernateUtil;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -27,20 +29,20 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> getByName(String name) {
+    public User getByName(String name) {
         try(Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            List<User> list = session
+            Optional<User> user = session
                     .createQuery("select distinct u from User u " +
                             "left join fetch u.roles rl where u.name like :usname")
                     .setParameter("usname", name)
-                    .list();
+                    .getResultStream().findFirst();
             session.getTransaction().commit();
-            return list;
+            return user.get();
         } catch (Exception e){
             e.printStackTrace();
         }
-        return new LinkedList<>();
+        return null;
     }
 
     @Override

@@ -15,11 +15,16 @@ public class UserDaoImplTest {
     RoleDao roleDao = new RoleDaoImpl();
 
     @Test
+    public void get() {
+        System.out.println(userDao.get(2));
+    }
+
+    @Test
     public void saveDeleteAndGet() {
         List<Role> list = new LinkedList<>();
         System.out.println(roleDao.get(2));
         list.add(roleDao.get(2));
-        User user = new User(null, "Johan", 19, list);
+        User user = new User(null, "Johan", 19, "qwerty", list);
         userDao.save(user);
         User persist = userDao.get(user.getId());
         Assert.assertNotNull(persist);

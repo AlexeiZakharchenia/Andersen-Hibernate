@@ -25,6 +25,8 @@ public class User {
 
     private Integer age;
 
+    private String password;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @Fetch(value = FetchMode.JOIN)
     @JoinTable(name = "users_roles",
@@ -32,17 +34,19 @@ public class User {
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(name, user.name) &&
-                Objects.equals(age, user.age);
+        return name.equals(user.name) &&
+                age.equals(user.age) &&
+                password.equals(user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, age, roles);
+        return Objects.hash(name, age, password);
     }
 }
