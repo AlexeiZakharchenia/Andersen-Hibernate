@@ -16,7 +16,7 @@ public class UserDaoImplTest {
 
     @Test
     public void get() {
-        System.out.println(userDao.get(2));
+        Assert.assertNotNull(userDao.get(2));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class UserDaoImplTest {
 
     @Test
     public void getByName(){
-        System.out.println(userDao.getByName("Tom"));
+       Assert.assertNotNull(userDao.getByName("Tom"));
     }
 
     @Test
@@ -51,11 +51,11 @@ public class UserDaoImplTest {
 
     @Test
     public void getAll() {
-        System.out.println(userDao.getAll());
+        Assert.assertTrue(userDao.getAll().size()>0);
     }
 
     @Test
     public void getAllByRole() {
-        userDao.getAllByRoleName("admin").forEach(System.out::println);
+        Assert.assertTrue(userDao.getAllByRoleName("admin").size() > 0);
     }
 }

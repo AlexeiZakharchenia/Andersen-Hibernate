@@ -33,11 +33,11 @@ public class RoleDaoImplTest {
 
     @Test
     public void getAll() {
-        System.out.println(roleDao.getAll());
+        Assert.assertTrue(roleDao.getAll().size() > 0);
     }
 
     @Test
     public void getAllByUserName(){
-      roleDao.getAllByUserName("Tom").forEach(System.out::println);
+        Assert.assertTrue(roleDao.getAllByUserName("Tom").size() > 0);
     }
 }
